@@ -1,0 +1,122 @@
+Meets Specifications
+Dear Student,
+Thank you for this great project! You understand the topics covered in the lessons very well.
+It was a pleasure to go through your code. I'll also suggest using the documentation you created to showcase this work since it is a great project that you achieved here.
+Keep up the good work! 🙂👍
+If you have any questions, please let us know on the knowledge forum.
+You passed this one,
+Best wishes on the next project
+Code Quality
+All code cells can be run without error.
+Tips: Implement safeguards against invalid user inputs that can potentially break the codes. Please refer to the “Solicit and handle raw user input” rubric item for further details.
+No error, well done!
+Appropriate data types (e.g. strings, floats) and data structures (e.g. lists, dictionaries) are chosen to carry out the required analysis tasks.
+Excellent work!
+My suggestion is after this course, go check data structures and algorithms on python.
+I am quite sure that this will improve your current python skills.
+Here are some free resources about this topic:
+1) http://greenteapress.com/thinkpython/html/index.html
+2) https://runestone.academy/runestone/books/published/pythonds/index.html
+3) https://docs.google.com/viewer?a=v&pid=sites&srcid=dnVrbWFsYmFzYS5jb218d3d3fGd4OjU3NWZjOWU1MTM4ZTI4OQ
+4) this one is my favorite, it is about solving hard mathematical problems via programming languages. You really need to know how to play with data types : https://projecteuler.net
+Loops and conditional statements are used to process the data correctly.
+Packages are used to carry out advanced tasks.
+You did a great job with pandas
+Please check the visualization packages also. Eventhough they are not discussed in the course, I am quite sure that you can understand and use them in your projects.
+I highly suggest following visualization libraries:
+1)plotly (https://plotly.com/python/)
+2)streamlit (https://www.streamlit.io)
+Functions are used to reduce repetitive code.
+Excellent! you make really good use of functions. Thanks to functions, your code is modular and very clean. Now the next step is the python "class". If you want to a quick tutorial about classes: https://www.learnpython.org/en/Classes_and_Objects
+Docstrings, comments, and variable names enable the readability of the code.
+Tips: Please refer to the Python’s documentation PEP 257 -- Docstring Conventions. Example of docstring conventions:
+def function(a, b):
+    """Do X and return a list."""
+ 
+Good job including a docstring in all functions to explain the purpose of a function. It makes it easy to follow your function. If you would like to know more about what docstrings are, how to write good one-line or multi-line docstrings please see the following link; https://www.python.org/dev/peps/pep-025
+Script and Questions
+Raw input is solicited and handled correctly to guide the interactive question-answering experience; no errors are thrown when unexpected input is entered.
+User inputs should be made case insensitive, which means the input should accept the string of "Chicago" and its case variants, such as "chicago", "CHICAGO", or "cHicAgo".
+You should also implement error handlings so your program does not throw any errors due to invalid inputs. For example, if the user enters "Los Angeles" for the city, the error handling should reject the user input and avoid breaking the codes.
+Thanks to lower method, your input handling becomes very robust!
+To reduce repetition, you can use the following get filters function (just a suggestion no need change anything):
+
+def check_data_entry(prompt, valid_entries): 
+    """
+    Asks user to type some input and verify if the entry typed is valid.
+    Since we have 3 inputs to ask the user in get_filters(), it is easier to write a function.
+    Args:
+        (str) prompt - message to display to the user
+        (list) valid_entries - list of string that should be accepted 
+    Returns:
+        (str) user_input - the user's valid input
+    """
+    try:
+        user_input = str(input(prompt)).lower()
+
+        while user_input not in valid_entries : 
+            print('Sorry... it seems like you\'re not typing a correct entry.')
+            print('Let\'s try again!')
+            user_input = str(input(prompt)).lower()
+
+        print('Great! the chosen entry is: {}\n'.format(user_input))
+        return user_input
+
+    except:
+        print('Seems like there is an issue with your input')
+
+
+
+def get_filters(): 
+    """
+    Asks user to specify a city, month, and day to analyze.
+
+    Returns:
+        (str) city - name of the city to analyze
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+    """
+
+    print('Hi there! Let\'s explore some US bikeshare data!')
+
+    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    valid_cities = CITY_DATA.keys()
+    prompt_cities = 'Please choose one of the 3 cities (chicago, new york city, washington): '
+    city = check_data_entry(prompt_cities, valid_cities)
+
+
+    # get user input for month (all, january, february, ... , june)
+    valid_months = ['all','january','february','march','april','may','june']
+    prompt_month = 'Please choose a month (all, january, february, ... , june): '
+    month = check_data_entry(prompt_month, valid_months)
+
+    # get user input for day of week (all, monday, tuesday, ... sunday)
+    valid_days = ['all','monday','tuesday','wednesday','thursday','friday','saturday', 'sunday']
+    prompt_day = 'Please choose a day (all, monday, tuesday, ... sunday): '
+    day = check_data_entry(prompt_day, valid_days)
+
+
+    print('-'*40)
+    return city, month, day
+ 
+Descriptive statistics are correctly computed and used to answer the questions posed about the data.
+Raw data is displayed upon request by the user in the following manner:
+Your script should prompt the user if they want to see 5 lines of raw data,
+Display that data if the answer is 'yes',
+Continue iterating these prompts and displaying the next 5 lines of raw data at each iteration,
+Stop the program when the user says 'no' or there is no more raw data to display.
+Tips: you can implement the while loop and track the row index in order to display the continuous raw data.
+Well done! I think it is quite important to check data manually. However, it would be nice if we can see all columns. When I run the code, columns are collapsed, and only some of them are shown.
+You can prevent this situation by adding this to your code:
+pd.set_option(‘display.max_columns',200)
+ 
+Here is another way to do this:
+while True:
+    display_data = input('\nWould you like to see 5 lines of raw data? Enter yes or no.\n')
+    if display_data.lower() != 'yes':
+        break
+    print(tabulate(df_default.iloc[np.arange(0+i,5+i)], headers ="keys"))
+    i+=5
+ 
+As you see, I use a new library here, tabulate. So to use this, please also import the module:
+from tabulate import tabulate
